@@ -15,7 +15,6 @@ export default class PersonDetails extends Component {
 
   componentDidMount() {
     this.updatePerson();
-    console.log(this.state.person);
   }
 
   componentDidUpdate(prevProps){
@@ -42,7 +41,7 @@ export default class PersonDetails extends Component {
            });
         })
   }
-  
+
   render() {
 
     const { person, loading } = this.state;
@@ -65,8 +64,10 @@ export default class PersonDetails extends Component {
   }
 }
 
+
 const PersonView = ({ person }) => {
   const { id, name, gender, birthYear, eyeColor} = person;
+
 
   return (
     <React.Fragment>
