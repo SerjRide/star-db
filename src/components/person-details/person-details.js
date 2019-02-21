@@ -4,7 +4,6 @@ import './person-details.css';
 import SwapiService from "../../services/swapi-service";
 import ErrorButton from "../error-button/error-button";
 import Spinner from '../spinner';
-import ErrorIndicator from '../error-indicator';
 
 export default class PersonDetails extends Component {
 
