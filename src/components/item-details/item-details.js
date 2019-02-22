@@ -78,8 +78,7 @@ export default class ItemDetails extends Component {
 
 const ItemView = ({ item, image, children }) => {
 
-  const { id, name, gender,
-            birthYear, eyeColor } = item;
+  const { name } = item;
 
   return (
     <React.Fragment>
