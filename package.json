@@ -4,9 +4,10 @@
   "private": true,
   "dependencies": {
     "prop-types": "^15.7.2",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2",
-    "react-scripts": "1.1.5"
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3",
+    "react-scripts": "1.1.5",
+    "webpack-dev-server": "^3.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
