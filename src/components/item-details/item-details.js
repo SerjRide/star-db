@@ -23,8 +23,8 @@ export default class ItemDetails extends Component {
   swapiService = new SwapiService();
 
   state = {
-    item: {},
-    loading: true,
+    item: null,
+    loading: false,
     image: null
   };
 
@@ -61,8 +61,8 @@ export default class ItemDetails extends Component {
     const { item, loading, image } = this.state;
     const { children } = this.props;
 
-    const hasData = !loading;
-
+    const hasData = !loading && item;
+    const noContent = !item && !loading ? <p>Select a item from a list</p> : null;
     const spinner = loading ? <Spinner /> : null;
     const content = hasData ? <ItemView
                                 item = { item }
@@ -71,6 +71,7 @@ export default class ItemDetails extends Component {
 
     return (
       <div className="item-details card">
+        {noContent}
         {spinner}
         {content}
       </div>
