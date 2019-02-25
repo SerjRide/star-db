@@ -9,7 +9,13 @@ import DummySwapiService from '../../services/dummy-swapi-service';
 import {StarshipDetails} from '../sw-components';
 
 import { SwapiServiceProvider } from '../swapi-service-context';
-import { PeoplePage, PlanetsPage, StarshipsPage } from '../pages';
+import {
+  PeoplePage,
+  PlanetsPage,
+  StarshipsPage,
+  LoginPage,
+  SecretPage
+} from '../pages';
 
 import './app.css';
 
@@ -17,7 +23,14 @@ export default class App extends Component {
 
   state = {
     hasError: false,
-    swapiService : new SwapiService()
+    swapiService : new SwapiService(),
+    isLoggedIn: false
+  };
+
+  onLogin = () => {
+    this.setState({
+      isLoggedIn: true
+    });
   };
 
   onServiceChange = () => {
@@ -39,6 +52,8 @@ export default class App extends Component {
 
   render() {
 
+    const { isLoggedIn } = this.state;
+
     if (this.state.hasError) {
       return <ErrorIndicator />
     }
@@ -51,7 +66,7 @@ export default class App extends Component {
               <Header onServiceChange={ this.onServiceChange }/>
               <RandomPlanet/>
               <Route path="/" exact render={() => <h2>Welcome to StarDB</h2>} />
-              <Route path="/person" component={PeoplePage} />
+              <Route path="/person/:id?" component={PeoplePage} />
               <Route path="/planets" component={PlanetsPage} />
               <Route path="/starships" exact component={StarshipsPage} />
               <Route path="/starships/:id"
@@ -59,6 +74,19 @@ export default class App extends Component {
                        const { id } = match.params
                        return <StarshipDetails itemId={id}/>
                      }}/>
+              <Route
+                path="/login"
+                render={() => (
+                  <LoginPage
+                    isLoggedIn={isLoggedIn}
+                    onLogin={this.onLogin}/>
+                )}/>
+              <Route
+                path="/secret"
+                render={() => (
+                  <SecretPage isLoggedIn={isLoggedIn}/>
+                )}/>
+
             </div>
           </Router>
         </SwapiServiceProvider>
